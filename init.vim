@@ -34,6 +34,7 @@ if has('nvim')
     Plug 'Yggdroot/indentLine', {'for': 'python'}
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     Plug 'jceb/vim-orgmode'
+    Plug 'kiteco/vim-plugin'
 "   Plug 'itchyny/lightline.vim'
 endif
 call plug#end()
