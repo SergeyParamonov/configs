@@ -1,4 +1,5 @@
-alias vim='nvim'
+#alias vim='nvim'
+export TERM=xterm-256color
 alias flushdns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
 plugins=(
     git 
@@ -20,7 +21,7 @@ alias tmux="tmux -2"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/sergeyparamonov/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -105,9 +106,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/anaconda3/bin"
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 export SPARK_HOME="$HOME/git/spark-2.3.0-bin-hadoop2.7"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PSBIT="nd1382ctfPROA"
