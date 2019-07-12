@@ -5,15 +5,23 @@ set nu
 set tabstop=4 shiftwidth=4 expandtab
 set hlsearch
 set incsearch
+set cursorline
+"set cursorcolumn
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme='badwolf'
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
 set t_Co=256
 syntax on
 syntax enable
+"let g:syntastic_python_pylint_exec= 'python3'
+let g:syntastic_python_pylint_exe = 'python3 -m pylint'
 call plug#begin('~/.vim/autoload')
+"   Plug 'python/black'
+    Plug 'morhetz/gruvbox'
+    Plug 'roxma/nvim-yarp' " for deoplete
+    Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'ericbn/vim-solarized'
     Plug 'davidhalter/jedi-vim'
     Plug 'osyo-manga/vim-over'
@@ -28,16 +36,15 @@ call plug#begin('~/.vim/autoload')
     Plug 'tpope/vim-fugitive'
     Plug 'python-mode/python-mode', {'branch': 'develop'}
     Plug 'python-rope/ropevim'
-    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline', {'for': 'python' }
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'bling/vim-bufferline'
+"   Plug 'bling/vim-bufferline'
     Plug 'flazz/vim-colorschemes'
-    Plug 'morhetz/gruvbox'
     Plug 'Yggdroot/indentLine', {'for': 'python'}
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' , 'for': 'python' }
     Plug 'jceb/vim-orgmode'
     Plug 'kiteco/vim-plugin'
-"   Plug 'itchyny/lightline.vim'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "autocmd VimEnter * NERDTree
