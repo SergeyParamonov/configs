@@ -7,6 +7,8 @@ set hlsearch
 set incsearch
 set cursorline
 "set cursorcolumn
+map ,b oimport pdb;pdb.set_trace()<ESC>
+
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme='badwolf'
@@ -15,15 +17,16 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 syntax enable
-"let g:syntastic_python_pylint_exec= 'python3'
+let g:pymode_python = 'python'
 let g:syntastic_python_pylint_exe = 'python3 -m pylint'
+let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
 call plug#begin('~/.vim/autoload')
 "   Plug 'python/black'
     Plug 'morhetz/gruvbox'
     Plug 'roxma/nvim-yarp' " for deoplete
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'ericbn/vim-solarized'
-    Plug 'davidhalter/jedi-vim'
+    Plug 'davidhalter/jedi-vim', {'for' : 'python'}
     Plug 'osyo-manga/vim-over'
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -34,7 +37,7 @@ call plug#begin('~/.vim/autoload')
     Plug 'ervandew/supertab'
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'tpope/vim-fugitive'
-    Plug 'python-mode/python-mode', {'branch': 'develop'}
+    Plug 'python-mode/python-mode'  , {'branch': 'develop'}
     Plug 'python-rope/ropevim'
     Plug 'vim-airline/vim-airline', {'for': 'python' }
     Plug 'vim-airline/vim-airline-themes'
@@ -43,7 +46,7 @@ call plug#begin('~/.vim/autoload')
     Plug 'Yggdroot/indentLine', {'for': 'python'}
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' , 'for': 'python' }
     Plug 'jceb/vim-orgmode'
-    Plug 'kiteco/vim-plugin'
+"   Plug 'kiteco/vim-plugin'
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
@@ -55,8 +58,11 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
 let g:SimpylFold_fold_docstring = 0
 let mapleader = ','
-let g:python_host_prog = '/usr/bin/python2.7'
+"let g:python_host_prog = '/usr/bin/python2.7'
 let g:python3_host_prog = '/opt/miniconda/bin/python3.7'
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 0
 let g:pymode_folding = 0
 set statusline=%f
 "set statusline+=%{gutentags#statusline()}
