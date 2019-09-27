@@ -1,5 +1,4 @@
 #alias vim='nvim'
-alias python3=/opt/miniconda/bin/python3.7 
 export TERM=xterm-256color
 alias flushdns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
 plugins=(
@@ -108,5 +107,4 @@ source $ZSH/oh-my-zsh.sh
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/anaconda3/bin"
 source /.local/bin/virtualenvwrapper.sh
-export SPARK_HOME="$HOME/git/spark-2.3.0-bin-hadoop2.7"
 export PATH="/usr/local/opt/curl/bin:$PATH"
