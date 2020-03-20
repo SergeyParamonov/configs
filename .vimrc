@@ -8,6 +8,7 @@ set incsearch
 set cursorline
 "set cursorcolumn
 map ,b oimport pdb;pdb.set_trace()<ESC>
+cnoreabbrev fzf FZF
 
 
 let g:airline_powerline_fonts = 0
@@ -17,11 +18,17 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 syntax enable
-let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 let g:syntastic_python_pylint_exe = 'python3 -m pylint'
 let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
 call plug#begin('~/.vim/autoload')
-"   Plug 'python/black'
+    Plug 'stephpy/vim-yaml'
+    Plug 'vifm/vifm.vim'
+    Plug 'luochen1990/rainbow'
+    Plug 'mileszs/ack.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'airblade/vim-gitgutter'
+    Plug 'python/black'
     Plug 'morhetz/gruvbox'
     Plug 'roxma/nvim-yarp' " for deoplete
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -41,13 +48,10 @@ call plug#begin('~/.vim/autoload')
     Plug 'python-rope/ropevim'
     Plug 'vim-airline/vim-airline', {'for': 'python' }
     Plug 'vim-airline/vim-airline-themes'
-"   Plug 'bling/vim-bufferline'
     Plug 'flazz/vim-colorschemes'
     Plug 'Yggdroot/indentLine', {'for': 'python'}
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' , 'for': 'python' }
     Plug 'jceb/vim-orgmode'
-"   Plug 'kiteco/vim-plugin'
-    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "autocmd VimEnter * NERDTree
@@ -59,7 +63,7 @@ let g:SimpylFold_fold_import = 0
 let g:SimpylFold_fold_docstring = 0
 let mapleader = ','
 "let g:python_host_prog = '/usr/bin/python2.7'
-let g:python3_host_prog = '/opt/miniconda/bin/python3.7'
+let g:python3_host_prog = 'python3'
 let g:pymode_rope_lookup_project = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope = 0
@@ -69,7 +73,7 @@ set statusline=%f
 set splitbelow
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_write = 0 
-let g:pymode_lint_ignore = ["E2","E3","E501","W605","E127","E701","W391","E731"]
+let g:pymode_lint_ignore = ["E2","E3","E501","W605","E127","E701","W391","E731", "E402", "W0611", "E705", "E702"]
 
 colorscheme gruvbox
 set background=dark
@@ -79,6 +83,19 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 let g:ycm_always_populate_location_list = 1
 let g:pymode_breakpoint_cmd='import pdb; pdb.set_trace() #XXX BREAKPOINT'
 set t_ut=
+"do not jump to first ack result automatically
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+silent! nmap <C-p> :NERDTreeToggle<CR>
+silent! nmap <C-f> :Vifm<CR>
+silent! map <F2> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
+let g:NERDTreeToggle="<F2>"
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
+
+
 
 "let g:solarized_termcolors=256
 "colorscheme solarized
