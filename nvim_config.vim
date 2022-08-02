@@ -6,26 +6,24 @@ set tabstop=4 shiftwidth=4 expandtab
 set encoding=utf-8
 
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
-let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
 set t_Co=256
 syntax on
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/autoload/')
 let g:coc_start_at_startup = 1
-"let g:pymode_python = 'python3'
-"let g:syntastic_python_pylint_exe = 'python3 -m pylint'
-"let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
-"let g:syntastic_python_python_exec = 'python3'
 let g:airline_section_z = '%t'
 let g:black_linelength = 79
+let g:airline_powerline_fonts = 1
+let g:airline_theme='badwolf'
+let g:deoplete#enable_at_startup = 1
+let g:gutentags_ctags_executable='/usr/local/bin/ctags'
 
 cnoreabbrev fzf FZF
+let $FZF_DEFAULT_OPTS = '--bind alt-q:select-all+accept'
+
 
 if has('nvim')
-"   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-    Plug 'fisadev/vim-isort'
+"   Plug 'fisadev/vim-isort'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neoclide/coc-python'
     Plug 'neoclide/coc-json'
@@ -39,10 +37,13 @@ if has('nvim')
     Plug 'junegunn/fzf.vim'
     Plug 'psf/black'
     Plug 'osyo-manga/vim-over'
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'scrooloose/nerdtree', 
+    Plug 'ryanoasis/vim-devicons'
+"   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Konfekt/FastFold'
     Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
     Plug 'tpope/vim-fugitive'
     Plug 'python-rope/ropevim'
     Plug 'vim-airline/vim-airline'
@@ -53,6 +54,9 @@ if has('nvim')
     Plug 'Yggdroot/indentLine', {'for': 'python'}
     Plug 'jceb/vim-orgmode'
     Plug 'machakann/vim-swap'
+    Plug 'tpope/vim-obsession'
+
+"   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 "   Plug 'davidhalter/jedi-vim'
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'zchee/deoplete-jedi'
@@ -73,7 +77,7 @@ nnoremap <Leader>a :Ack!<Space>
 "silent! nmap <C-p> :CHADopen<CR>
 silent! nmap <C-f> :Vifm<CR>
 silent! map <F2> :NERDTreeToggle<CR>
-silent! map <F3> :NERDTreeFind<CR>
+silent! map <F3> :NERDTreeFind <CR>
 
 
 autocmd Filetype python nnoremap <leader>d :RopeGotoDefinition<CR>
@@ -84,8 +88,8 @@ autocmd Filetype python nnoremap <leader>d :RopeGotoDefinition<CR>
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
 let g:SimpylFold_fold_docstring = 0
-let g:python_host_prog = '/usr/bin/python2.7'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 let g:pymode_folding = 0
 "set statusline+=%F
 "set statusline+=%{gutentags#statusline()}
@@ -100,11 +104,24 @@ set background=dark
 autocmd Filetype json let g:indentLine_setConceal = 0
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 let g:ycm_always_populate_location_list = 1
-"let g:pymode_breakpoint_cmd='import pdb; pdb.set_trace() #XXX BREAKPOINT'
-"map ,b oimport pdb;pdb.set_trace()<ESC>
+map ,b oimport ipdb;ipdb.set_trace()  # type: ignore<ESC>
+
+
 
 " to help with unresolved imports
-autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', '.venv']
+let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
+"let g:gutentags_trace = 1
+
+
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gdiff!<CR>
+nnoremap <leader>gr :diffget //3<CR>
+nnoremap <leader>gl :diffget //2<CR>
+set diffopt+=vertical
+
+
 "
 "-------- Coc-python --------------------
 " taken from https://github.com/neoclide/coc.nvim

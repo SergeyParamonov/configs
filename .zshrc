@@ -1,3 +1,6 @@
+export GITTOKEN=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
+eval $(thefuck --alias)
+set -o vi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -7,19 +10,20 @@ fi
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
-export PATH=$PATH:$HOME/Selenium/driver/
+export PATH=/usr/local/bin/:$PATH
 alias vim='nvim'
 export TERM=xterm-256color
 alias flushdns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
 plugins=(
     git 
-    osx 
+    macos
     git-flow-avh 
     zsh-syntax-highlighting 
     zsh-autosuggestions
 )
 export WORKON_HOME=~/envs
-export XDG_CONFIG_HOME='~/.config/'
+export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
+source /Library/Frameworks/Python.framework/Versions/3.8/bin/virtualenvwrapper.sh
 
 alias cd..='cd ..'
 # ryan
@@ -116,18 +120,32 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/anaconda3/bin"
-<<<<<<< HEAD
-source /usr/local/bin/virtualenvwrapper.sh
-#   source /usr/local/bin/virtualenvwrapper.sh
-#   source /usr/local/bin/virtualenvwrapper.sh
-# export SPARK_HOME="$HOME/git/spark-2.3.0-bin-hadoop2.7"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-=======
-source /.local/bin/virtualenvwrapper.sh
-export PATH="/usr/local/opt/curl/bin:$PATH"
->>>>>>> a14c5de345180683e47e77e04cb4610ddbdc509e
+
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                    # hh to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r"  "\eddihstr -- \n"
+
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/sergeyparamonov/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/sergeyparamonov/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/sergeyparamonov/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/sergeyparamonov/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
