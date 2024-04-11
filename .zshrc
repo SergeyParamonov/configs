@@ -1,4 +1,6 @@
-export GITTOKEN=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
+alias python=python3
+export AWS_PROFILE=Meltwater-FairhairIO-development.Developer
+bindkey -v
 eval $(thefuck --alias)
 set -o vi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -7,6 +9,8 @@ set -o vi
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+#export PATH="/usr/local/opt/python@3.11/bin:$PATH"
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
@@ -20,10 +24,11 @@ plugins=(
     git-flow-avh 
     zsh-syntax-highlighting 
     zsh-autosuggestions
+    vi-mode
 )
 export WORKON_HOME=~/envs
-export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
-source /Library/Frameworks/Python.framework/Versions/3.8/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+source /opt/homebrew/bin/virtualenvwrapper.sh
 
 alias cd..='cd ..'
 # ryan
@@ -132,7 +137,6 @@ setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r"  "\eddihstr -- \n"
 
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

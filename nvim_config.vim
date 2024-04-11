@@ -16,7 +16,7 @@ let g:black_linelength = 79
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
 let g:deoplete#enable_at_startup = 1
-let g:gutentags_ctags_executable='/usr/local/bin/ctags'
+let g:black_virtualenv="~/.vim_black"
 
 cnoreabbrev fzf FZF
 let $FZF_DEFAULT_OPTS = '--bind alt-q:select-all+accept'
@@ -24,22 +24,25 @@ let $FZF_DEFAULT_OPTS = '--bind alt-q:select-all+accept'
 
 if has('nvim')
 "   Plug 'fisadev/vim-isort'
+"   Plug 'neoclide/coc-python'
+"   Plug 'EgZvor/vim-black'
+"   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    Plug 'ervandew/supertab'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'neoclide/coc-python'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
     Plug 'neoclide/coc-json'
     Plug 'puremourning/vimspector'
-    Plug 'mileszs/ack.vim'
     Plug 'tpope/vim-eunuch'
     Plug 'vifm/vifm'
     Plug 'vifm/vifm.vim'
     Plug 'luochen1990/rainbow'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'psf/black'
+    Plug 'psf/black', { 'branch': 'stable' }
     Plug 'osyo-manga/vim-over'
     Plug 'scrooloose/nerdtree', 
     Plug 'ryanoasis/vim-devicons'
-"   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Konfekt/FastFold'
     Plug 'ludovicchabant/vim-gutentags'
@@ -62,7 +65,6 @@ if has('nvim')
 "   Plug 'zchee/deoplete-jedi'
 "   Plug 'tmhedberg/SimpylFold'
 "   Plug 'python-mode/python-mode', {'branch': 'develop'}
-"   Plug 'ervandew/supertab'
 "   Plug 'kiteco/vim-plugin'
 "   Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "   Plug 'itchyny/lightline.vim'
@@ -71,16 +73,19 @@ call plug#end()
 
 
 let mapleader = ','
-cnoreabbrev Ack Ack!
-cnoreabbrev ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"   cnoreabbrev Ack Ack!
+"   cnoreabbrev ack Ack!
+"   nnoremap <Leader>a :Ack!<Space>
 "silent! nmap <C-p> :CHADopen<CR>
 silent! nmap <C-f> :Vifm<CR>
 silent! map <F2> :NERDTreeToggle<CR>
 silent! map <F3> :NERDTreeFind <CR>
 
-
-autocmd Filetype python nnoremap <leader>d :RopeGotoDefinition<CR>
 
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
@@ -89,7 +94,7 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
 let g:SimpylFold_fold_docstring = 0
 let g:python_host_prog = '/usr/bin/python3'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/opt/homebrew/bin/python3.10'
 let g:pymode_folding = 0
 "set statusline+=%F
 "set statusline+=%{gutentags#statusline()}
